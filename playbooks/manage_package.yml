@@ -1,0 +1,10 @@
+---
+- name: Manage Linux package
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Manage requested package
+      ansible.builtin.dnf:
+        name: "{{ package_name }}"
+        state: "{{ package_state }}"
