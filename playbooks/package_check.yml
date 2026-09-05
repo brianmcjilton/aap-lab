@@ -1,0 +1,15 @@
+---
+- name: Check package on Linux system
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Gather installed package information
+      ansible.builtin.package_facts:
+        manager: auto
+
+    - name: Report package status
+      ansible.builtin.debug:
+        msg: >-
+          Package {{ package_name }} is
+          {{ 'INSTALLED' if package_name in ansible_facts.packages else 'NOT INSTALLED' }}
